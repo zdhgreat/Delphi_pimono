@@ -22,10 +22,10 @@
 
 PiMono Agent is a native Windows desktop application that connects to OpenAI-compatible LLM APIs and provides an interactive AI coding assistant experience. It features a modern WebView2-based chat UI, a state-machine-driven agent loop with tool calling, and a rich set of built-in tools for file operations, shell commands, Git, and web search.
 
-<p align="center">
+<!-- <p align="center">
   <img src="img/gpt-delphi.png" alt="GPT-4o Conversation" width="45%">
   <img src="img/qwen.png" alt="Qwen Conversation" width="45%">
-</p>
+</p> -->
 
 ## Features
 
