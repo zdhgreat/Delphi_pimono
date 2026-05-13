@@ -1,0 +1,32 @@
+Build started 2026/4/30 11:28:50.
+__________________________________________________
+Project "D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\PiMonoTests.dproj" (Build target(s)):
+Target BuildVersionResource:
+    c:\program files (x86)\embarcadero\studio\23.0\bin\cgrc.exe -c65001 PiMonoTests.vrc -foPiMonoTests.res 
+    CodeGear Resource Compiler/Binder
+    Version 1.2.2 Copyright (c) 2008-2012 Embarcadero Technologies Inc.
+    
+    Microsoft (R) Windows (R) Resource Compiler Version 6.0.5724.0
+    
+    Copyright (C) Microsoft Corporation.  All rights reserved.
+    
+    
+    Deleting file "PiMonoTests.vrc".
+Target _PasCoreCompile:
+    c:\program files (x86)\embarcadero\studio\23.0\bin\dcc32.exe -$O- -$W+ -$R+ -$Q+ --no-config -B -Q -TX.exe -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Winapi.Windows;WinProcs=Winapi.Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE -DDEBUG -I"c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release";C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports\Win32;"c:\program files (x86)\embarcadero\studio\23.0\Imports";C:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp;"c:\program files (x86)\embarcadero\studio\23.0\include";D:\GLXEngine\Source;D:\GLXEngine\lib;D:\GLXEngine\Sourcex;D:\GLXEngine\Src;D:\opengl_pratice\P4D\Source;D:\opengl_pratice\P4D\Source\Vcl;D:\opengl_pratice\P4D\Source\Fmx;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source -LEC:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl -LNC:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp -NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap; -O"c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release";C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports\Win32;"c:\program files (x86)\embarcadero\studio\23.0\Imports";C:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp;"c:\program files (x86)\embarcadero\studio\23.0\include";D:\GLXEngine\Source;D:\GLXEngine\lib;D:\GLXEngine\Sourcex;D:\GLXEngine\Src;D:\opengl_pratice\P4D\Source;D:\opengl_pratice\P4D\Source\Vcl;D:\opengl_pratice\P4D\Source\Fmx;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source -R"c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release";C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports\Win32;"c:\program files (x86)\embarcadero\studio\23.0\Imports";C:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp;"c:\program files (x86)\embarcadero\studio\23.0\include";D:\GLXEngine\Source;D:\GLXEngine\lib;D:\GLXEngine\Sourcex;D:\GLXEngine\Src;D:\opengl_pratice\P4D\Source;D:\opengl_pratice\P4D\Source\Vcl;D:\opengl_pratice\P4D\Source\Fmx;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source -U"c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release";C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\Imports\Win32;"c:\program files (x86)\embarcadero\studio\23.0\Imports";C:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp;"c:\program files (x86)\embarcadero\studio\23.0\include";D:\GLXEngine\Source;D:\GLXEngine\lib;D:\GLXEngine\Sourcex;D:\GLXEngine\Src;D:\opengl_pratice\P4D\Source;D:\opengl_pratice\P4D\Source\Vcl;D:\opengl_pratice\P4D\Source\Fmx;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source;C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source -K00400000 -NBC:\Users\Public\Documents\Embarcadero\Studio\23.0\Dcp -NHC:\Users\Public\Documents\Embarcadero\Studio\23.0\hpp\Win32  PiMonoTests.dpr   
+    C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source\SVGInterfaces.pas(87,7): warning H1054: H1054 Use Delphi native Image32 SVG-Engine for SVGIconImageList
+    C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source\Img32.SVG.Reader.pas(999,44): warning W1063: W1063 Widening given AnsiChar constant (#$A0) to WideChar lost information
+    D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\UI\TestWebViewBridgeInteraction.pas(239,14): error E2361: E2361 Cannot access private symbol TWebViewBridge.PostToJS
+    D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\UI\TestWebViewBridgeInteraction.pas(270,14): error E2361: E2361 Cannot access private symbol TWebViewBridge.PostEvent
+    D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\PiMonoTests.dpr(96,2): error F2063: F2063 Could not compile used unit 'TestWebViewBridgeInteraction.pas'
+Done building target "_PasCoreCompile" in project "PiMonoTests.dproj" -- FAILED.
+Done building project "PiMonoTests.dproj" -- FAILED.
+Build FAILED.
+C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\source\SVGInterfaces.pas(87,7): warning H1054: H1054 Use Delphi native Image32 SVG-Engine for SVGIconImageList
+C:\Users\zhudonghai.jason\Documents\Embarcadero\Studio\23.0\CatalogRepository\SVGIconImageList-12\Image32\source\Img32.SVG.Reader.pas(999,44): warning W1063: W1063 Widening given AnsiChar constant (#$A0) to WideChar lost information
+D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\UI\TestWebViewBridgeInteraction.pas(239,14): error E2361: E2361 Cannot access private symbol TWebViewBridge.PostToJS
+D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\UI\TestWebViewBridgeInteraction.pas(270,14): error E2361: E2361 Cannot access private symbol TWebViewBridge.PostEvent
+D:\AI_CHAT\agent\pimono-main\PiMonoDelphi\Tests\PiMonoTests.dpr(96,2): error F2063: F2063 Could not compile used unit 'TestWebViewBridgeInteraction.pas'
+    2 Warning(s)
+    3 Error(s)
+Time Elapsed 00:00:00.82

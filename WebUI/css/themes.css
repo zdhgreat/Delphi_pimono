@@ -1,0 +1,1671 @@
+/* PiMono Multi-Theme System — Theme Variable Definitions + Layout Overrides
+   Each block defines CSS custom properties AND layout-specific overrides.
+   Loaded after styles.css; themes override :root defaults via [data-theme] selectors. */
+
+/* ==========================================================================
+   Theme 1: Cyberpunk Neon (default dark)
+   Deep space black + Neon Cyan/Magenta/Amber + Monospace tech fonts
+   ALL decorative effects (glow, glitch, scanlines) live HERE, not in styles.css
+   ========================================================================== */
+
+[data-theme="cyberpunk-neon"] {
+  --bg: #0A0E17;
+  --surface: #0F1923;
+  --surface-glass: rgba(15, 25, 35, 0.85);
+  --text: #C8E0F0;
+  --text-secondary: #4A6A7A;
+  --text-bright: #E8F4FF;
+  --accent: #00F0FF;
+  --accent-hover: #33F5FF;
+  --accent-dim: rgba(0, 240, 255, 0.15);
+  --accent-glow: rgba(0, 240, 255, 0.4);
+  --magenta: #FF0066;
+  --magenta-dim: rgba(255, 0, 102, 0.15);
+  --magenta-glow: rgba(255, 0, 102, 0.4);
+  --amber: #FFB800;
+  --amber-dim: rgba(255, 184, 0, 0.15);
+  --amber-glow: rgba(255, 184, 0, 0.4);
+  --green: #00FF88;
+  --green-dim: rgba(0, 255, 136, 0.15);
+  --red: #FF3344;
+  --red-dim: rgba(255, 51, 68, 0.15);
+  --border: rgba(0, 240, 255, 0.12);
+  --border-strong: rgba(0, 240, 255, 0.3);
+  --input-bg: #0B1018;
+  --user-msg: #0E0A18;
+  --user-msg-border: var(--magenta);
+  --assistant-msg: #0B1018;
+  --assistant-msg-border: var(--accent);
+  --error-msg: #1A0A0A;
+  --error-msg-border: var(--red);
+  --tool-msg: #0E0E08;
+  --tool-msg-border: var(--amber);
+  --btn-bg: rgba(0, 240, 255, 0.08);
+  --btn-text: var(--accent);
+  --btn-hover: rgba(0, 240, 255, 0.18);
+  --btn-pressed: rgba(0, 240, 255, 0.05);
+  --sidebar-active: rgba(0, 240, 255, 0.08);
+  --code-bg: #060A10;
+  --code-border: rgba(0, 240, 255, 0.15);
+  --code-text: #A8D8E8;
+  --shadow: rgba(0, 240, 255, 0.08);
+  --chat-max-width: 860px;
+  --sidebar-width: 260px;
+  --toolbar-height: 48px;
+  --input-min-height: 72px;
+  --status-height: 28px;
+  --border-radius: 2px;
+  --font-display: 'Orbitron', monospace;
+  --font-mono: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+  --font-size: 14px;
+  --font-body: var(--font-mono);
+  --code-font: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+}
+
+/* === Cyberpunk Neon: ALL decorative effects restored === */
+
+/* Scanlines + grid background */
+[data-theme="cyberpunk-neon"] #scanlines { display: block; }
+[data-theme="cyberpunk-neon"] #app::before { content: ''; }
+
+/* Welcome logo glitch */
+[data-theme="cyberpunk-neon"] #welcome-logo {
+  text-shadow: 0 0 20px var(--accent-glow);
+  box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px var(--accent-dim);
+  animation: logoGlitch 4s infinite;
+}
+[data-theme="cyberpunk-neon"] #welcome-logo::before {
+  display: flex; content: 'P';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 28px; font-weight: 900;
+  color: var(--magenta); opacity: 0;
+  animation: glitchLeft 4s infinite;
+}
+[data-theme="cyberpunk-neon"] #welcome-logo::after {
+  display: flex; content: 'P';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 28px; font-weight: 900;
+  color: var(--accent); opacity: 0;
+  animation: glitchRight 4s infinite;
+}
+[data-theme="cyberpunk-neon"] #welcome-title { text-shadow: 0 0 20px var(--accent-glow); }
+
+/* Toolbar neon */
+[data-theme="cyberpunk-neon"] #toolbar-title {
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+[data-theme="cyberpunk-neon"] .toolbar-blink { animation: neonFlicker 3s infinite; }
+[data-theme="cyberpunk-neon"] #toolbar::after {
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+}
+
+/* Status bar neon */
+[data-theme="cyberpunk-neon"] #status-bar {
+  letter-spacing: 1px; text-transform: uppercase;
+}
+[data-theme="cyberpunk-neon"] #status-bar::before {
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+}
+[data-theme="cyberpunk-neon"] .status-dot { box-shadow: 0 0 8px var(--green); }
+[data-theme="cyberpunk-neon"] #status-text { text-shadow: 0 0 4px var(--green-dim); }
+
+/* Buttons: uppercase + glow */
+[data-theme="cyberpunk-neon"] .sidebar-btn-primary {
+  text-transform: uppercase; letter-spacing: 1px;
+  text-shadow: 0 0 8px var(--accent-glow);
+  box-shadow: 0 0 8px var(--accent-dim), inset 0 0 8px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .sidebar-btn-primary:hover {
+  box-shadow: 0 0 16px var(--accent-glow), inset 0 0 16px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .session-item.active { text-shadow: 0 0 6px var(--accent-glow); }
+[data-theme="cyberpunk-neon"] .skill-label { text-transform: uppercase; letter-spacing: 2px; }
+
+/* Role icons glow */
+[data-theme="cyberpunk-neon"] .role-icon.user { box-shadow: 0 0 8px var(--magenta-dim); }
+[data-theme="cyberpunk-neon"] .role-icon.assistant { box-shadow: 0 0 8px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .role-icon.tool { box-shadow: 0 0 8px var(--amber-dim); }
+[data-theme="cyberpunk-neon"] .role-icon.error { box-shadow: 0 0 8px var(--red-dim); }
+
+/* Bubble glow + neon headings */
+[data-theme="cyberpunk-neon"] .bubble.user { box-shadow: -3px 0 12px var(--magenta-dim); }
+[data-theme="cyberpunk-neon"] .bubble.assistant { box-shadow: -3px 0 12px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .bubble.tool { box-shadow: -3px 0 12px var(--amber-dim); }
+[data-theme="cyberpunk-neon"] .bubble.error { box-shadow: -3px 0 12px var(--red-dim); }
+[data-theme="cyberpunk-neon"] .bubble h1 { letter-spacing: 2px; }
+[data-theme="cyberpunk-neon"] .bubble h2 { letter-spacing: 1px; }
+[data-theme="cyberpunk-neon"] .bubble h1,
+[data-theme="cyberpunk-neon"] .bubble h2,
+[data-theme="cyberpunk-neon"] .bubble h3 { text-shadow: 0 0 6px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .bubble a { text-shadow: 0 0 4px var(--accent-dim); }
+
+/* Code blocks: scanline overlay + inset shadow */
+[data-theme="cyberpunk-neon"] .code-block {
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+[data-theme="cyberpunk-neon"] .code-block::before {
+  display: block; content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0, 240, 255, 0.02) 2px, rgba(0, 240, 255, 0.02) 4px
+  );
+  pointer-events: none;
+}
+[data-theme="cyberpunk-neon"] .code-block-header {
+  background: rgba(0, 240, 255, 0.04);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .code-copy-btn {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .code-copy-btn:hover { box-shadow: 0 0 8px var(--accent-dim); }
+
+/* Typing dots: neon pulse */
+[data-theme="cyberpunk-neon"] .typing-dots span {
+  animation: neonPulse 1.2s infinite;
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* Input card: glow on focus */
+[data-theme="cyberpunk-neon"] #input-card:focus-within {
+  box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px var(--accent-dim);
+}
+
+/* Send button glow */
+[data-theme="cyberpunk-neon"] #btn-send {
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] #btn-send:hover {
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* Stop button */
+[data-theme="cyberpunk-neon"] #btn-stop:hover { box-shadow: 0 0 12px var(--red-dim); }
+
+/* Model selector glow */
+[data-theme="cyberpunk-neon"] #cmb-model:focus { box-shadow: 0 0 8px var(--accent-glow); }
+
+/* Suggestion cards glow */
+[data-theme="cyberpunk-neon"] .suggestion-card:hover {
+  box-shadow: 0 0 12px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .suggestion-card:hover .suggestion-icon {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Scrollbar glow */
+[data-theme="cyberpunk-neon"] #chat-area::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* Image hover glow */
+[data-theme="cyberpunk-neon"] .bubble img:hover,
+[data-theme="cyberpunk-neon"] .bubble .chat-image:hover {
+  box-shadow: 0 0 16px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] #image-lightbox img { box-shadow: 0 0 40px var(--accent-glow); }
+
+/* Copy button glow */
+[data-theme="cyberpunk-neon"] .msg-copy-btn:hover { box-shadow: 0 0 8px var(--accent-glow); }
+
+/* Confirm panel glow */
+[data-theme="cyberpunk-neon"] .confirm-panel {
+  box-shadow: 0 0 12px var(--amber-dim);
+}
+[data-theme="cyberpunk-neon"] .confirm-panel h4 {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .btn-approve {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .btn-approve:hover { box-shadow: 0 0 12px var(--green-dim); }
+[data-theme="cyberpunk-neon"] .btn-reject {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .btn-reject:hover { box-shadow: 0 0 12px var(--red-dim); }
+
+/* Diff glow */
+[data-theme="cyberpunk-neon"] .diff-added { text-shadow: 0 0 4px var(--green-dim); }
+[data-theme="cyberpunk-neon"] .diff-removed { text-shadow: 0 0 4px var(--red-dim); }
+
+/* Streaming cursor glow */
+[data-theme="cyberpunk-neon"] .streaming-cursor::after { text-shadow: 0 0 6px var(--accent-glow); }
+
+/* Settings panel glow */
+[data-theme="cyberpunk-neon"] #settings-panel { box-shadow: 0 0 40px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] #settings-header h2 {
+  letter-spacing: 2px; text-transform: uppercase;
+  text-shadow: 0 0 8px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .settings-tab {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+[data-theme="cyberpunk-neon"] .settings-tab.active { text-shadow: 0 0 4px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .btn-primary {
+  text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .btn-primary:hover { box-shadow: 0 0 16px var(--accent-glow); }
+[data-theme="cyberpunk-neon"] .form-group label { text-transform: uppercase; letter-spacing: 1px; }
+[data-theme="cyberpunk-neon"] .form-input:focus { box-shadow: 0 0 12px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .form-btn-browse:hover { box-shadow: 0 0 8px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .list-actions button { text-transform: uppercase; }
+[data-theme="cyberpunk-neon"] .list-actions button:hover { box-shadow: 0 0 8px var(--accent-dim); }
+
+/* Context menu */
+[data-theme="cyberpunk-neon"] #context-menu { box-shadow: 0 0 20px var(--accent-dim); }
+
+/* Onboarding glow */
+[data-theme="cyberpunk-neon"] #onboarding-panel { box-shadow: 0 0 60px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .onboard-title {
+  letter-spacing: 2px; text-shadow: 0 0 10px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .onboard-label { text-transform: uppercase; letter-spacing: 1px; }
+[data-theme="cyberpunk-neon"] .onboard-input:focus { box-shadow: 0 0 12px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .provider-category { text-transform: uppercase; letter-spacing: 2px; }
+[data-theme="cyberpunk-neon"] .provider-card:hover { box-shadow: 0 0 12px var(--accent-dim); }
+[data-theme="cyberpunk-neon"] .provider-card.selected { box-shadow: 0 0 16px var(--accent-glow); }
+[data-theme="cyberpunk-neon"] .onboard-test-btn {
+  text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+[data-theme="cyberpunk-neon"] .onboard-test-btn:hover:not(:disabled) {
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+[data-theme="cyberpunk-neon"] .onboard-success { text-shadow: 0 0 4px var(--green-dim); }
+[data-theme="cyberpunk-neon"] .onboard-warn { text-shadow: 0 0 4px var(--amber-dim); }
+[data-theme="cyberpunk-neon"] .onboard-step-dot.active { box-shadow: 0 0 8px var(--accent-glow); }
+[data-theme="cyberpunk-neon"] .model-recommended { text-transform: uppercase; letter-spacing: 1px; }
+[data-theme="cyberpunk-neon"] .model-radio.checked {
+  box-shadow: 0 0 8px var(--accent-glow), inset 0 0 0 3px var(--bg);
+}
+[data-theme="cyberpunk-neon"] #welcome-subtitle { letter-spacing: 1px; }
+
+
+/* ==========================================================================
+   Theme 2: Classic Dark — IDE Developer Tool Layout
+   Catppuccin Mocha palette + IBM Plex Sans + compact IDE-style layout
+   Now builds UP from neutral base — adds IDE-specific traits
+   ========================================================================== */
+
+[data-theme="classic-dark"] {
+  --bg: #1E1E2E;
+  --surface: #181825;
+  --surface-glass: rgba(24, 24, 37, 0.95);
+  --text: #CDD6F4;
+  --text-secondary: #6C7086;
+  --text-bright: #F5F5F5;
+  --accent: #89B4FA;
+  --accent-hover: #B4D0FB;
+  --accent-dim: rgba(137, 180, 250, 0.12);
+  --accent-glow: rgba(137, 180, 250, 0.3);
+  --magenta: #F38BA8;
+  --magenta-dim: rgba(243, 139, 168, 0.12);
+  --magenta-glow: rgba(243, 139, 168, 0.3);
+  --amber: #FAB387;
+  --amber-dim: rgba(250, 179, 135, 0.12);
+  --amber-glow: rgba(250, 179, 135, 0.3);
+  --green: #A6E3A1;
+  --green-dim: rgba(166, 227, 161, 0.12);
+  --red: #F38BA8;
+  --red-dim: rgba(243, 139, 168, 0.12);
+  --border: rgba(205, 214, 244, 0.08);
+  --border-strong: rgba(205, 214, 244, 0.15);
+  --input-bg: #11111B;
+  --user-msg: #1A1020;
+  --user-msg-border: var(--magenta);
+  --assistant-msg: #11111B;
+  --assistant-msg-border: var(--accent);
+  --error-msg: #1A0E0E;
+  --error-msg-border: var(--red);
+  --tool-msg: #1A1810;
+  --tool-msg-border: var(--amber);
+  --btn-bg: rgba(137, 180, 250, 0.06);
+  --btn-text: var(--accent);
+  --btn-hover: rgba(137, 180, 250, 0.14);
+  --btn-pressed: rgba(137, 180, 250, 0.04);
+  --sidebar-active: rgba(137, 180, 250, 0.1);
+  --code-bg: #11111B;
+  --code-border: rgba(205, 214, 244, 0.1);
+  --code-text: #CDD6F4;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --chat-max-width: 860px;
+  --sidebar-width: 200px;
+  --toolbar-height: 36px;
+  --input-min-height: 64px;
+  --status-height: 22px;
+  --border-radius: 4px;
+  --font-display: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+  --font-size: 13px;
+  --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+  --code-font: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+}
+
+/* === Classic Dark: POSITIVE IDE character === */
+
+/* Sidebar: opaque, file-tree style, activity indicator */
+[data-theme="classic-dark"] #sidebar {
+  background: var(--surface);
+  backdrop-filter: none;
+  border-right: 1px solid var(--border);
+}
+[data-theme="classic-dark"] .sidebar-btn-primary {
+  border: none; background: none;
+  padding: 6px 12px; margin: 6px 8px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+[data-theme="classic-dark"] .sidebar-btn-primary:hover {
+  color: var(--text); background: var(--accent-dim);
+}
+/* File tree: chevron + indentation */
+[data-theme="classic-dark"] .session-item {
+  border-left: none; padding-left: 18px;
+  border-radius: 0; font-size: 12px;
+}
+[data-theme="classic-dark"] .session-item::before {
+  content: '\203A'; margin-right: 6px; color: var(--text-secondary);
+  font-size: 10px; display: inline-block; width: 10px;
+}
+[data-theme="classic-dark"] .session-item.active {
+  background: var(--sidebar-active); border-left: none;
+  border-left: 2px solid var(--accent); padding-left: 16px;
+}
+
+/* Toolbar: compact tab bar with bottom accent */
+[data-theme="classic-dark"] #toolbar {
+  height: 36px; padding: 0 10px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface); backdrop-filter: none;
+}
+[data-theme="classic-dark"] #toolbar::after {
+  background: var(--border-strong); opacity: 1;
+}
+[data-theme="classic-dark"] #toolbar-title {
+  font-size: 11px; font-weight: 600;
+}
+[data-theme="classic-dark"] #toolbar-right { gap: 6px; }
+[data-theme="classic-dark"] .toolbar-btn {
+  width: 28px; height: 28px; border-radius: 3px;
+}
+[data-theme="classic-dark"] #cmb-model {
+  font-size: 11px; padding: 4px 8px; border-radius: 3px;
+}
+
+/* Chat area: tighter */
+[data-theme="classic-dark"] #chat-area { padding: 12px 16px; }
+
+/* Bubbles: compact, bottom separator, no left-border */
+[data-theme="classic-dark"] .bubble {
+  padding: 10px 14px; border-left: none;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: none; border-radius: 0;
+  font-size: 13px;
+}
+[data-theme="classic-dark"] .bubble.user,
+[data-theme="classic-dark"] .bubble.assistant,
+[data-theme="classic-dark"] .bubble.tool,
+[data-theme="classic-dark"] .bubble.error { border-left: none; }
+
+/* Role icons: smaller, circular */
+[data-theme="classic-dark"] .role-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 9px;
+}
+
+/* Input: terminal panel style */
+[data-theme="classic-dark"] #input-area {
+  background: var(--surface);
+  padding: 6px 16px 8px;
+}
+[data-theme="classic-dark"] #input-card {
+  background: var(--input-bg); border: none; backdrop-filter: none;
+  border-radius: 0; border-top: 2px solid var(--border-strong);
+}
+[data-theme="classic-dark"] #input-card:focus-within {
+  border-top-color: var(--accent);
+}
+[data-theme="classic-dark"] #input { font-size: 13px; }
+
+/* Status bar: compact IDE segmented */
+[data-theme="classic-dark"] #status-bar {
+  height: 22px; font-size: 10px;
+  background: var(--surface); backdrop-filter: none;
+}
+[data-theme="classic-dark"] #status-bar::before {
+  background: var(--border-strong);
+}
+[data-theme="classic-dark"] .status-dot { width: 5px; height: 5px; }
+
+/* Code blocks: clean border, header tint */
+[data-theme="classic-dark"] .code-block {
+  border: 1px solid var(--border-strong);
+}
+[data-theme="classic-dark"] .code-block-header {
+  background: rgba(205, 214, 244, 0.04);
+}
+
+/* Welcome: no glitch, clean */
+[data-theme="classic-dark"] #welcome-logo { border-radius: 4px; }
+[data-theme="classic-dark"] #welcome-title { font-size: 24px; }
+
+/* Typing dots */
+[data-theme="classic-dark"] .typing-dots span {
+  animation: typingPulse 1.2s infinite;
+}
+
+/* Background: subtle depth zones */
+[data-theme="classic-dark"] #app {
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(137, 180, 250, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(243, 139, 168, 0.02) 0%, transparent 50%),
+    var(--bg);
+}
+
+/* Settings panel: clean, no glow */
+[data-theme="classic-dark"] #settings-panel {
+  box-shadow: 0 4px 24px var(--shadow);
+}
+[data-theme="classic-dark"] #onboarding-panel {
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+/* Context menu */
+[data-theme="classic-dark"] #context-menu { box-shadow: 0 2px 12px var(--shadow); }
+
+
+/* ==========================================================================
+   Theme 3: Minimal Modern — ChatGPT-style overlay sidebar layout
+   DM Sans + generous whitespace + overlay sidebar + floating pill input
+   Builds UP from neutral: adds overlay sidebar, hidden elements, pill input
+   ========================================================================== */
+
+[data-theme="minimal-modern"] {
+  --bg: #212121;
+  --surface: #2F2F2F;
+  --surface-glass: #2F2F2F;
+  --text: #ECECEC;
+  --text-secondary: #8E8E8E;
+  --text-bright: #FFFFFF;
+  --accent: #10A37F;
+  --accent-hover: #1DB990;
+  --accent-dim: rgba(16, 163, 127, 0.12);
+  --accent-glow: rgba(16, 163, 127, 0.2);
+  --magenta: #A855F7;
+  --magenta-dim: rgba(168, 85, 247, 0.12);
+  --magenta-glow: rgba(168, 85, 247, 0.2);
+  --amber: #E5943A;
+  --amber-dim: rgba(229, 148, 58, 0.12);
+  --amber-glow: rgba(229, 148, 58, 0.2);
+  --green: #10A37F;
+  --green-dim: rgba(16, 163, 127, 0.12);
+  --red: #EF4444;
+  --red-dim: rgba(239, 68, 68, 0.12);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --input-bg: #2F2F2F;
+  --user-msg: #2A2435;
+  --user-msg-border: var(--magenta);
+  --assistant-msg: transparent;
+  --assistant-msg-border: rgba(255, 255, 255, 0.06);
+  --error-msg: #2A1A1A;
+  --error-msg-border: var(--red);
+  --tool-msg: #2A2A1A;
+  --tool-msg-border: var(--amber);
+  --btn-bg: rgba(16, 163, 127, 0.08);
+  --btn-text: var(--accent);
+  --btn-hover: rgba(16, 163, 127, 0.16);
+  --btn-pressed: rgba(16, 163, 127, 0.04);
+  --sidebar-active: rgba(16, 163, 127, 0.12);
+  --code-bg: #1A1A1A;
+  --code-border: rgba(255, 255, 255, 0.08);
+  --code-text: #D4D4D4;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --chat-max-width: 680px;
+  --sidebar-width: 280px;
+  --toolbar-height: 52px;
+  --input-min-height: 72px;
+  --status-height: 0px;
+  --border-radius: 12px;
+  --font-display: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-size: 14px;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --code-font: 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+/* === Minimal Modern: POSITIVE ChatGPT-style character === */
+
+/* Sidebar: stays in flex flow, uses existing toggle mechanism */
+[data-theme="minimal-modern"] #sidebar {
+  background: #171717;
+  backdrop-filter: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* Main area */
+[data-theme="minimal-modern"] #main {
+}
+
+/* Toolbar: minimal, subtle background for visibility */
+[data-theme="minimal-modern"] #toolbar {
+  border-bottom: none;
+  background: var(--bg);
+  backdrop-filter: none;
+}
+[data-theme="minimal-modern"] #toolbar::after { display: none; }
+[data-theme="minimal-modern"] #toolbar-title { display: none; }
+/* Ensure toolbar buttons are visible */
+[data-theme="minimal-modern"] .toolbar-btn {
+  color: var(--text-secondary);
+}
+[data-theme="minimal-modern"] .toolbar-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+[data-theme="minimal-modern"] #cmb-model {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* Chat area: generous breathing room */
+[data-theme="minimal-modern"] #chat-area { padding: 40px 24px; }
+
+/* Welcome: circular logo, hidden title, vertical suggestions */
+[data-theme="minimal-modern"] #welcome-logo {
+  border-radius: 50%;
+  width: 56px; height: 56px; font-size: 22px;
+  border: none;
+  background: var(--accent-dim);
+}
+[data-theme="minimal-modern"] #welcome-title { display: none; }
+[data-theme="minimal-modern"] #welcome-subtitle { margin-bottom: 32px; font-size: 14px; }
+[data-theme="minimal-modern"] #suggestion-grid {
+  grid-template-columns: 1fr;
+  max-width: 400px;
+  gap: 8px;
+}
+[data-theme="minimal-modern"] .suggestion-card {
+  padding: 14px 16px; border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* Bubbles: no left border, wide, very rounded */
+[data-theme="minimal-modern"] .bubble {
+  padding: 16px 20px; border-left: none;
+  backdrop-filter: none; border-radius: 18px;
+  background: transparent;
+}
+[data-theme="minimal-modern"] .bubble.user {
+  background: var(--user-msg);
+  border-radius: 18px 18px 4px 18px;
+  max-width: 90%;
+}
+[data-theme="minimal-modern"] .bubble.assistant {
+  background: transparent;
+}
+[data-theme="minimal-modern"] .bubble.tool,
+[data-theme="minimal-modern"] .bubble.error { border-left: none; }
+
+/* Role icons: circular, subtle */
+[data-theme="minimal-modern"] .role-icon {
+  border-radius: 50%; width: 28px; height: 28px;
+}
+
+/* Input area: transparent, centered pill */
+[data-theme="minimal-modern"] #input-area {
+  background: var(--bg);
+  padding: 8px 24px 20px;
+}
+[data-theme="minimal-modern"] #input-card {
+  border: 1px solid var(--border);
+  backdrop-filter: none;
+  border-radius: 24px;
+  padding: 12px 20px;
+  box-shadow: 0 2px 16px var(--shadow);
+  background: var(--surface);
+  max-width: 680px;
+}
+[data-theme="minimal-modern"] #input-card:focus-within {
+  box-shadow: 0 4px 24px var(--shadow);
+  border-color: var(--border-strong);
+}
+
+/* Status bar: HIDDEN */
+[data-theme="minimal-modern"] #status-bar { display: none; }
+
+/* Sidebar items: clean, no left border, ensure visibility */
+[data-theme="minimal-modern"] .sidebar-btn-primary {
+  font-weight: 500; margin: 12px; padding: 10px 16px;
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+[data-theme="minimal-modern"] .sidebar-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-secondary);
+}
+[data-theme="minimal-modern"] .session-item {
+  border-left: none; padding-left: 14px; border-radius: 8px;
+  color: var(--text-secondary);
+}
+[data-theme="minimal-modern"] .session-item:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+[data-theme="minimal-modern"] .session-item.active {
+  background: var(--accent-dim); border-left: none;
+  color: var(--accent);
+}
+[data-theme="minimal-modern"] #sidebar-empty { color: var(--text-secondary); }
+[data-theme="minimal-modern"] .skill-label { color: var(--text-secondary); }
+[data-theme="minimal-modern"] .skill-tag { border-color: var(--border-strong); color: var(--text-secondary); }
+
+/* Code blocks: clean */
+[data-theme="minimal-modern"] .code-block {
+  border-radius: 8px;
+}
+
+/* Typing dots */
+[data-theme="minimal-modern"] .typing-dots span {
+  animation: typingPulse 1.2s infinite;
+}
+
+/* Background: subtle top-down light */
+[data-theme="minimal-modern"] #app {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(16, 163, 127, 0.06) 0%, transparent 40%),
+    var(--bg);
+}
+
+/* Settings/Onboarding: soft shadow */
+[data-theme="minimal-modern"] #settings-panel { box-shadow: 0 8px 48px var(--shadow); border-radius: 16px; }
+[data-theme="minimal-modern"] #onboarding-panel { box-shadow: 0 8px 48px var(--shadow); border-radius: 16px; }
+
+/* Context menu */
+[data-theme="minimal-modern"] #context-menu { box-shadow: 0 4px 16px var(--shadow); border-radius: 8px; }
+
+/* Form elements: rounded */
+[data-theme="minimal-modern"] .form-input { border-radius: 8px; }
+[data-theme="minimal-modern"] .provider-card { border-radius: 8px; }
+[data-theme="minimal-modern"] .onboard-input { border-radius: 8px; }
+
+
+/* ==========================================================================
+   Theme 4: Glass Morphism — macOS floating panel layout (HEAVY frosted glass)
+   Plus Jakarta Sans + floating rounded panels + bright animated light blobs
+   Builds UP from neutral: adds blur, transparency, color blobs, depth
+   ========================================================================== */
+
+[data-theme="glass-morphism"] {
+  --bg: #1C1C2E;
+  --surface: rgba(40, 40, 65, 0.45);
+  --surface-glass: rgba(40, 40, 65, 0.35);
+  --text: #E8E0F0;
+  --text-secondary: #9490A8;
+  --text-bright: #FFFFFF;
+  --accent: #7C6CF0;
+  --accent-hover: #9588F5;
+  --accent-dim: rgba(124, 108, 240, 0.15);
+  --accent-glow: rgba(124, 108, 240, 0.3);
+  --magenta: #E860A0;
+  --magenta-dim: rgba(232, 96, 160, 0.15);
+  --magenta-glow: rgba(232, 96, 160, 0.3);
+  --amber: #D4A848;
+  --amber-dim: rgba(212, 168, 72, 0.15);
+  --amber-glow: rgba(212, 168, 72, 0.3);
+  --green: #50C878;
+  --green-dim: rgba(80, 200, 120, 0.15);
+  --red: #E85050;
+  --red-dim: rgba(232, 80, 80, 0.15);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --input-bg: rgba(30, 30, 50, 0.5);
+  --user-msg: rgba(80, 40, 80, 0.3);
+  --user-msg-border: var(--magenta);
+  --assistant-msg: rgba(40, 40, 65, 0.25);
+  --assistant-msg-border: var(--accent);
+  --error-msg: rgba(80, 20, 20, 0.3);
+  --error-msg-border: var(--red);
+  --tool-msg: rgba(80, 70, 20, 0.3);
+  --tool-msg-border: var(--amber);
+  --btn-bg: rgba(124, 108, 240, 0.1);
+  --btn-text: var(--accent);
+  --btn-hover: rgba(124, 108, 240, 0.2);
+  --btn-pressed: rgba(124, 108, 240, 0.05);
+  --sidebar-active: rgba(124, 108, 240, 0.15);
+  --code-bg: rgba(20, 20, 35, 0.7);
+  --code-border: rgba(255, 255, 255, 0.1);
+  --code-text: #D0C8E0;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --chat-max-width: 860px;
+  --sidebar-width: 260px;
+  --toolbar-height: 48px;
+  --input-min-height: 72px;
+  --status-height: 28px;
+  --border-radius: 16px;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-size: 14px;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --code-font: 'JetBrains Mono', 'Fira Code', Menlo, monospace;
+}
+
+/* === Glass Morphism: HEAVY frosted glass character === */
+
+/* App container: dark background + padding for floating panels */
+[data-theme="glass-morphism"] #app {
+  background: #14142A;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* CRITICAL: Bright animated color blobs — the SOURCE of frosted glass blur content */
+[data-theme="glass-morphism"] #app::after {
+  content: '';
+  position: fixed;
+  top: -30%; left: -30%;
+  width: 160%; height: 160%;
+  background:
+    radial-gradient(ellipse at 25% 45%, rgba(124, 108, 240, 0.50) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 25%, rgba(232, 96, 160, 0.40) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 80%, rgba(80, 200, 120, 0.28) 0%, transparent 45%),
+    radial-gradient(ellipse at 10% 90%, rgba(212, 168, 72, 0.20) 0%, transparent 40%);
+  z-index: 0;
+  animation: glassFloat 25s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes glassFloat {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(-4%, 2%) scale(1.06) rotate(1deg); }
+  66% { transform: translate(2%, -3%) scale(1.03) rotate(-0.5deg); }
+  100% { transform: translate(-3%, 3%) scale(1.08) rotate(0.5deg); }
+}
+
+/* Sidebar: frosted glass panel */
+[data-theme="glass-morphism"] #sidebar {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  backdrop-filter: blur(50px) saturate(200%);
+  background: rgba(40, 40, 65, 0.45);
+  z-index: 1; position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Main area: frosted glass panel */
+[data-theme="glass-morphism"] #main {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  backdrop-filter: blur(50px) saturate(200%);
+  background: rgba(40, 40, 65, 0.25);
+  z-index: 1; position: relative;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Toolbar: glass blur */
+[data-theme="glass-morphism"] #toolbar {
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  background: rgba(40, 40, 65, 0.35);
+}
+[data-theme="glass-morphism"] #toolbar::after { display: none; }
+
+/* Bubbles: glass cards, no left border */
+[data-theme="glass-morphism"] .bubble {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-left: none;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+[data-theme="glass-morphism"] .bubble.user,
+[data-theme="glass-morphism"] .bubble.assistant,
+[data-theme="glass-morphism"] .bubble.tool,
+[data-theme="glass-morphism"] .bubble.error { border-left: none; }
+
+/* Role icons: circular, subtle glass */
+[data-theme="glass-morphism"] .role-icon {
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Input card: frosted pill */
+[data-theme="glass-morphism"] #input-card {
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 24px;
+  background: rgba(40, 40, 65, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+[data-theme="glass-morphism"] #input-card:focus-within {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(124, 108, 240, 0.3);
+}
+
+/* Welcome: no glitch, circular glass logo */
+[data-theme="glass-morphism"] #welcome-logo {
+  border-radius: 50%;
+  border: none;
+  background: rgba(124, 108, 240, 0.15);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(124, 108, 240, 0.15);
+}
+
+/* Status bar: inside glass main */
+[data-theme="glass-morphism"] #status-bar {
+  background: rgba(40, 40, 65, 0.3);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+/* Session items: glass highlight */
+[data-theme="glass-morphism"] .session-item {
+  border-left: none; padding-left: 14px; border-radius: 8px;
+}
+[data-theme="glass-morphism"] .session-item.active {
+  background: rgba(124, 108, 240, 0.15); border-left: none;
+}
+[data-theme="glass-morphism"] .sidebar-btn-primary { font-weight: 500; }
+
+/* Code blocks: glass style */
+[data-theme="glass-morphism"] .code-block {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(20, 20, 35, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+[data-theme="glass-morphism"] .code-block-header {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Settings overlay: heavy blur */
+[data-theme="glass-morphism"] #settings-overlay {
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+}
+[data-theme="glass-morphism"] #settings-panel {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  backdrop-filter: blur(50px) saturate(200%);
+  background: rgba(40, 40, 65, 0.5);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+[data-theme="glass-morphism"] #onboarding-panel {
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  backdrop-filter: blur(50px) saturate(200%);
+  background: rgba(40, 40, 65, 0.5);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Context menu: glass */
+[data-theme="glass-morphism"] #context-menu {
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  background: rgba(40, 40, 65, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+}
+
+/* Typing dots */
+[data-theme="glass-morphism"] .typing-dots span {
+  animation: typingPulse 1.2s infinite;
+}
+
+/* Form elements: rounded */
+[data-theme="glass-morphism"] .form-input { border-radius: 10px; }
+[data-theme="glass-morphism"] .provider-card { border-radius: 12px; }
+[data-theme="glass-morphism"] .onboard-input { border-radius: 10px; }
+
+
+/* ==========================================================================
+   Theme 5: Light — Editorial/reading experience layout
+   Instrument Sans + warm tones + reading-optimized width
+   Builds UP from neutral: adds warmth, generous spacing, editorial details
+   ========================================================================== */
+
+[data-theme="light"] {
+  --bg: #F8F7F4;
+  --surface: #FFFFFF;
+  --surface-glass: #FFFFFF;
+  --text: #2C2C2C;
+  --text-secondary: #7A7A72;
+  --text-bright: #1A1A18;
+  --accent: #C44B2F;
+  --accent-hover: #A83D25;
+  --accent-dim: rgba(196, 75, 47, 0.08);
+  --accent-glow: rgba(196, 75, 47, 0.12);
+  --magenta: #7C3AED;
+  --magenta-dim: rgba(124, 58, 237, 0.08);
+  --magenta-glow: rgba(124, 58, 237, 0.12);
+  --amber: #B8860B;
+  --amber-dim: rgba(184, 134, 11, 0.08);
+  --amber-glow: rgba(184, 134, 11, 0.12);
+  --green: #2C6B5E;
+  --green-dim: rgba(44, 107, 94, 0.08);
+  --red: #C43D3D;
+  --red-dim: rgba(196, 61, 61, 0.08);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.12);
+  --input-bg: #FFFFFF;
+  --user-msg: #F5F0F8;
+  --user-msg-border: var(--magenta);
+  --assistant-msg: #F5F5F3;
+  --assistant-msg-border: rgba(0, 0, 0, 0.04);
+  --error-msg: #FFF0F0;
+  --error-msg-border: var(--red);
+  --tool-msg: #FDF8F0;
+  --tool-msg-border: var(--amber);
+  --btn-bg: rgba(196, 75, 47, 0.05);
+  --btn-text: var(--accent);
+  --btn-hover: rgba(196, 75, 47, 0.12);
+  --btn-pressed: rgba(196, 75, 47, 0.03);
+  --sidebar-active: rgba(196, 75, 47, 0.06);
+  --code-bg: #F3F3F0;
+  --code-border: rgba(0, 0, 0, 0.08);
+  --code-text: #2C2C2C;
+  --shadow: rgba(0, 0, 0, 0.06);
+  --chat-max-width: 720px;
+  --sidebar-width: 280px;
+  --toolbar-height: 44px;
+  --input-min-height: 72px;
+  --status-height: 24px;
+  --border-radius: 8px;
+  --font-display: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-size: 15px;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --code-font: 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+/* === Light: POSITIVE editorial/reading character === */
+
+/* Background: warm parchment tint */
+[data-theme="light"] #app {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(196, 75, 47, 0.03) 0%, transparent 50%),
+    var(--bg);
+}
+
+/* Sidebar: warm white, TOC style */
+[data-theme="light"] #sidebar {
+  background: var(--surface);
+  backdrop-filter: none;
+  border-right: 1px solid #E8E6E2;
+}
+[data-theme="light"] .sidebar-btn-primary {
+  font-weight: 500;
+  border-color: #D0CEC8;
+}
+[data-theme="light"] .sidebar-btn-primary:hover {
+  background: var(--accent-dim);
+}
+
+/* Session items: bullet + warm accent */
+[data-theme="light"] .session-item {
+  border-left: none; padding-left: 16px; font-size: 13px;
+  color: #555;
+}
+[data-theme="light"] .session-item::before {
+  content: '\2022'; margin-right: 8px; color: var(--accent);
+  font-size: 8px; vertical-align: middle;
+}
+[data-theme="light"] .session-item.active {
+  background: var(--accent-dim); border-left: none;
+  color: var(--accent);
+}
+[data-theme="light"] .session-item:hover {
+  color: var(--text);
+}
+
+/* Toolbar: clean warm white */
+[data-theme="light"] #toolbar {
+  background: #FFFFFF; backdrop-filter: none;
+  border-bottom: 1px solid #E8E6E2;
+}
+[data-theme="light"] #toolbar::after { display: none; }
+
+/* Chat area: generous reading padding */
+[data-theme="light"] #chat-area { padding: 32px 28px; }
+
+/* Bubbles: full-width, reading-optimized, warm */
+[data-theme="light"] .bubble {
+  border-left: none;
+  backdrop-filter: none;
+  border-radius: var(--border-radius);
+  padding: 16px 20px; line-height: 1.75;
+  background: var(--assistant-msg);
+  font-size: 15px;
+}
+[data-theme="light"] .bubble.user {
+  background: var(--user-msg);
+  max-width: 80%;
+}
+[data-theme="light"] .bubble.assistant,
+[data-theme="light"] .bubble.tool,
+[data-theme="light"] .bubble.error { border-left: none; }
+
+/* Role icons: circular, smaller, warm */
+[data-theme="light"] .role-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 9px; font-weight: 600;
+}
+
+/* Welcome: circular warm logo */
+[data-theme="light"] #welcome-logo {
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  box-shadow: 0 2px 12px rgba(196, 75, 47, 0.1);
+}
+[data-theme="light"] #welcome-title {
+  font-size: 28px; color: var(--text-bright);
+}
+[data-theme="light"] #welcome-subtitle {
+  color: var(--text-secondary); font-size: 14px;
+}
+[data-theme="light"] .suggestion-card {
+  border-radius: 8px;
+}
+
+/* Input area: warm white */
+[data-theme="light"] #input-area { background: #FFFFFF; }
+[data-theme="light"] #input-card {
+  backdrop-filter: none;
+  border-color: #D8D6D0;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  background: #FFFFFF;
+}
+[data-theme="light"] #input-card:focus-within {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+}
+
+/* Status bar: warm compact */
+[data-theme="light"] #status-bar {
+  background: #FFFFFF; height: 24px; font-size: 10px;
+  border-top: 1px solid #E8E6E2;
+}
+[data-theme="light"] #status-bar::before { display: none; }
+
+/* Code blocks: warm tinted */
+[data-theme="light"] .code-block-header {
+  background: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .code-block {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Typing dots */
+[data-theme="light"] .typing-dots span {
+  animation: typingPulse 1.2s infinite;
+}
+
+/* Settings/Onboarding: warm shadows */
+[data-theme="light"] #settings-panel {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+[data-theme="light"] #onboarding-panel {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Context menu */
+[data-theme="light"] #context-menu {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Form elements: rounded warm */
+[data-theme="light"] .form-input { border-radius: 6px; }
+[data-theme="light"] .provider-card { border-radius: 8px; }
+[data-theme="light"] .onboard-input { border-radius: 6px; }
+[data-theme="light"] .form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 75, 47, 0.08);
+}
+
+/* Buttons: warm accent */
+[data-theme="light"] .btn-primary:hover {
+  background: var(--accent-dim);
+}
+[data-theme="light"] .settings-tab.active {
+  background: var(--accent-dim);
+}
+
+
+/* ==========================================================================
+   Shared: typing pulse animation (neutral, non-cyberpunk)
+   ========================================================================== */
+
+@keyframes typingPulse {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+
+/* ==========================================================================
+   PER-THEME POLISH: Scrollbars, Selection, Micro-interactions
+   ========================================================================== */
+
+/* --- Cyberpunk Neon Polish --- */
+
+[data-theme="cyberpunk-neon"] ::-webkit-scrollbar { width: 6px; }
+[data-theme="cyberpunk-neon"] ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+[data-theme="cyberpunk-neon"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent) 0%, var(--magenta) 100%);
+  border-radius: 3px;
+  opacity: 0.6;
+}
+[data-theme="cyberpunk-neon"] ::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+[data-theme="cyberpunk-neon"] ::selection {
+  background: rgba(0, 240, 255, 0.25);
+  color: #FFFFFF;
+  text-shadow: none;
+}
+/* Message entrance: slide + neon flash */
+[data-theme="cyberpunk-neon"] .message-row {
+  animation: msgAppear 0.4s ease, cyberMsgFlash 0.6s ease;
+}
+@keyframes cyberMsgFlash {
+  0% { filter: brightness(1.5); }
+  100% { filter: brightness(1); }
+}
+/* Suggestion cards: hover neon underline */
+[data-theme="cyberpunk-neon"] .suggestion-card {
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="cyberpunk-neon"] .suggestion-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+[data-theme="cyberpunk-neon"] .suggestion-card:hover::after {
+  transform: scaleX(1);
+}
+/* Input area: neon gradient fade */
+[data-theme="cyberpunk-neon"] #input-area {
+  background: linear-gradient(180deg, transparent 0%, var(--bg) 20%, rgba(0, 240, 255, 0.02) 100%);
+}
+/* Session item: active neon pulse */
+[data-theme="cyberpunk-neon"] .session-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  animation: neonLine 2s ease-in-out infinite;
+}
+@keyframes neonLine {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; box-shadow: 0 0 6px var(--accent-glow); }
+}
+
+
+/* --- Classic Dark Polish --- */
+
+[data-theme="classic-dark"] ::-webkit-scrollbar { width: 8px; }
+[data-theme="classic-dark"] ::-webkit-scrollbar-track { background: var(--surface); }
+[data-theme="classic-dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(205, 214, 244, 0.15);
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+[data-theme="classic-dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(205, 214, 244, 0.25);
+}
+[data-theme="classic-dark"] ::selection {
+  background: rgba(137, 180, 250, 0.3);
+  color: #FFFFFF;
+}
+/* Message entrance: clean slide-in */
+[data-theme="classic-dark"] .message-row {
+  animation: msgAppear 0.25s ease;
+}
+/* Suggestion cards: IDE hover */
+[data-theme="classic-dark"] .suggestion-card {
+  border-radius: 3px;
+  font-size: 12px;
+}
+[data-theme="classic-dark"] .suggestion-card:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  transform: none;
+}
+/* Input area: IDE terminal feel */
+[data-theme="classic-dark"] #input-area {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+/* Session list: file-tree scrollbar */
+[data-theme="classic-dark"] #session-list::-webkit-scrollbar { width: 6px; }
+[data-theme="classic-dark"] #session-list::-webkit-scrollbar-thumb {
+  background: rgba(205, 214, 244, 0.1);
+  border-radius: 0;
+}
+
+
+/* --- Minimal Modern Polish --- */
+
+[data-theme="minimal-modern"] ::-webkit-scrollbar { width: 6px; }
+[data-theme="minimal-modern"] ::-webkit-scrollbar-track { background: transparent; }
+[data-theme="minimal-modern"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+[data-theme="minimal-modern"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+[data-theme="minimal-modern"] ::selection {
+  background: rgba(16, 163, 127, 0.3);
+  color: #FFFFFF;
+}
+/* Message entrance: soft fade up */
+[data-theme="minimal-modern"] .message-row {
+  animation: minimalMsgIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes minimalMsgIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* Suggestion cards: rounded, soft */
+[data-theme="minimal-modern"] .suggestion-card {
+  border-radius: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme="minimal-modern"] .suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+/* Input area: centered, breathing */
+[data-theme="minimal-modern"] #input-area {
+  background: var(--bg);
+}
+[data-theme="minimal-modern"] #input-card {
+  margin: 0 auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme="minimal-modern"] #input-card:focus-within {
+  transform: translateY(-1px);
+}
+/* Send button: rounded */
+[data-theme="minimal-modern"] #btn-send {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+[data-theme="minimal-modern"] #btn-stop {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+/* Sidebar items: pill-shaped active */
+[data-theme="minimal-modern"] .session-item.active {
+  border-radius: 8px;
+  margin: 2px 8px;
+}
+/* Bubble: user right-aligned rounded */
+[data-theme="minimal-modern"] .bubble.user {
+  border-radius: 20px 20px 4px 20px;
+}
+
+
+/* --- Glass Morphism Polish --- */
+
+[data-theme="glass-morphism"] ::-webkit-scrollbar { width: 6px; }
+[data-theme="glass-morphism"] ::-webkit-scrollbar-track { background: transparent; }
+[data-theme="glass-morphism"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  backdrop-filter: blur(4px);
+}
+[data-theme="glass-morphism"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+[data-theme="glass-morphism"] ::selection {
+  background: rgba(124, 108, 240, 0.35);
+  color: #FFFFFF;
+}
+/* Message entrance: glass materialize */
+[data-theme="glass-morphism"] .message-row {
+  animation: glassMsgIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes glassMsgIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); backdrop-filter: blur(20px); }
+  to { opacity: 1; transform: translateY(0) scale(1); backdrop-filter: blur(0px); }
+}
+/* Suggestion cards: glass hover */
+[data-theme="glass-morphism"] .suggestion-card {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+[data-theme="glass-morphism"] .suggestion-card:hover {
+  background: rgba(124, 108, 240, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px rgba(124, 108, 240, 0.1);
+  transform: translateY(-2px);
+}
+/* Input card: frosted elevation on focus */
+[data-theme="glass-morphism"] #input-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme="glass-morphism"] #input-card:focus-within {
+  transform: translateY(-2px);
+}
+/* Bubble hover: subtle glass shimmer */
+[data-theme="glass-morphism"] .bubble:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+/* Session items: glass highlight */
+[data-theme="glass-morphism"] .session-item:hover {
+  background: rgba(124, 108, 240, 0.08);
+  border-radius: 8px;
+}
+/* Send/stop buttons: glass pill */
+[data-theme="glass-morphism"] #btn-send {
+  border-radius: 50%;
+  background: rgba(124, 108, 240, 0.15);
+  border: 1px solid rgba(124, 108, 240, 0.3);
+}
+[data-theme="glass-morphism"] #btn-send:hover {
+  background: rgba(124, 108, 240, 0.25);
+  box-shadow: 0 0 12px rgba(124, 108, 240, 0.2);
+}
+[data-theme="glass-morphism"] #btn-stop {
+  border-radius: 50%;
+}
+
+
+/* --- Light Theme Polish --- */
+
+[data-theme="light"] ::-webkit-scrollbar { width: 8px; }
+[data-theme="light"] ::-webkit-scrollbar-track { background: #F0EFEC; }
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  border: 2px solid #F0EFEC;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+[data-theme="light"] ::selection {
+  background: rgba(196, 75, 47, 0.2);
+  color: #1A1A18;
+}
+/* Message entrance: editorial fade */
+[data-theme="light"] .message-row {
+  animation: msgAppear 0.35s ease;
+}
+/* Suggestion cards: warm hover */
+[data-theme="light"] .suggestion-card {
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: 1px solid #E0DDD8;
+  transition: all 0.2s ease;
+}
+[data-theme="light"] .suggestion-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(196, 75, 47, 0.08);
+  transform: translateY(-1px);
+}
+/* Light theme: code syntax highlighting fix */
+[data-theme="light"] .bubble code:not(pre code) {
+  background: rgba(196, 75, 47, 0.06);
+  color: #B8432A;
+  border-color: rgba(196, 75, 47, 0.15);
+}
+[data-theme="light"] .bubble h1,
+[data-theme="light"] .bubble h2,
+[data-theme="light"] .bubble h3 {
+  color: #2C2C2C;
+}
+[data-theme="light"] .bubble a {
+  color: var(--accent);
+  border-bottom-color: rgba(196, 75, 47, 0.3);
+}
+[data-theme="light"] .bubble a:hover {
+  border-bottom-color: var(--accent);
+}
+[data-theme="light"] .bubble strong {
+  color: #1A1A18;
+}
+[data-theme="light"] .bubble blockquote {
+  border-left-color: var(--accent);
+  color: #6A6A62;
+}
+/* Light code blocks: proper contrast */
+[data-theme="light"] .code-block {
+  background: #F5F5F2;
+  border-color: #E0DDD8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .code-block-header {
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom-color: #E0DDD8;
+  color: #7A7A72;
+}
+[data-theme="light"] .code-block pre {
+  color: #2C2C2C;
+}
+[data-theme="light"] .code-copy-btn {
+  color: #7A7A72;
+  border-color: #D8D6D0;
+}
+[data-theme="light"] .code-copy-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+/* Light theme: input warmth */
+[data-theme="light"] #input-area {
+  background: #FFFFFF;
+  border-top: 1px solid #E8E6E2;
+}
+[data-theme="light"] #input {
+  color: #2C2C2C;
+}
+[data-theme="light"] #input::placeholder {
+  color: #B0AEA8;
+}
+/* Light theme: role icons */
+[data-theme="light"] .role-icon.user {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.3);
+  color: #7C3AED;
+}
+[data-theme="light"] .role-icon.assistant {
+  background: rgba(44, 107, 94, 0.08);
+  border-color: rgba(44, 107, 94, 0.3);
+  color: #2C6B5E;
+}
+[data-theme="light"] .role-icon.tool {
+  background: rgba(184, 134, 11, 0.08);
+  border-color: rgba(184, 134, 11, 0.3);
+  color: #B8860B;
+}
+[data-theme="light"] .role-icon.error {
+  background: rgba(196, 61, 61, 0.08);
+  border-color: rgba(196, 61, 61, 0.3);
+  color: #C43D3D;
+}
+/* Light theme: buttons */
+[data-theme="light"] .btn-primary {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+[data-theme="light"] .btn-primary:hover {
+  background: rgba(196, 75, 47, 0.06);
+}
+[data-theme="light"] #btn-send {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+[data-theme="light"] #btn-send:hover {
+  background: rgba(196, 75, 47, 0.06);
+}
+/* Light theme: typing dots */
+[data-theme="light"] .typing-dots span {
+  background: var(--accent);
+}
+[data-theme="light"] .typing-dots {
+  border-left-color: var(--accent);
+  background: #F5F5F3;
+}
+/* Light theme: toolbar buttons */
+[data-theme="light"] .toolbar-btn {
+  color: #8A8880;
+}
+[data-theme="light"] .toolbar-btn:hover {
+  color: #2C2C2C;
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #D8D6D0;
+}
+/* Light theme: sidebar */
+[data-theme="light"] #sidebar {
+  background: #FAFAF8;
+  border-right-color: #E8E6E2;
+}
+[data-theme="light"] .skill-tag {
+  background: rgba(184, 134, 11, 0.06);
+  border-color: rgba(184, 134, 11, 0.2);
+  color: #B8860B;
+}
+[data-theme="light"] .sidebar-btn-primary {
+  border-color: #D0CEC8;
+  color: var(--accent);
+}
+/* Light theme: status bar */
+[data-theme="light"] #status-bar {
+  background: #FAFAF8;
+  border-top-color: #E8E6E2;
+  color: #8A8880;
+}
+[data-theme="light"] #status-text {
+  color: #2C6B5E;
+}
+[data-theme="light"] .status-dot {
+  background: #2C6B5E;
+}
+/* Light theme: context menu */
+[data-theme="light"] #context-menu {
+  background: #FFFFFF;
+  border-color: #E0DDD8;
+}
+[data-theme="light"] #context-menu button:hover {
+  background: rgba(196, 75, 47, 0.06);
+  color: var(--accent);
+}
+/* Light theme: confirm panel */
+[data-theme="light"] .confirm-panel {
+  background: #FFFCF5;
+  border-color: #D4A848;
+  border-left-color: #D4A848;
+}
+[data-theme="light"] .confirm-panel h4 { color: #B8860B; }
+/* Light theme: settings tabs */
+[data-theme="light"] .settings-tab {
+  color: #8A8880;
+}
+[data-theme="light"] .settings-tab:hover {
+  color: #2C2C2C;
+  border-color: #D8D6D0;
+}
+[data-theme="light"] .settings-tab.active {
+  background: rgba(196, 75, 47, 0.06);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+/* Light theme: form inputs */
+[data-theme="light"] .form-input {
+  background: #FFFFFF;
+  border-color: #D8D6D0;
+  color: #2C2C2C;
+}
+[data-theme="light"] .form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 75, 47, 0.06);
+}
+/* Light theme: list items */
+[data-theme="light"] .list-item {
+  border-bottom-color: #E8E6E2;
+}
+[data-theme="light"] .list-item:hover {
+  background: rgba(196, 75, 47, 0.04);
+  border-left-color: var(--accent);
+}
+[data-theme="light"] .list-item.active {
+  background: rgba(196, 75, 47, 0.06);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+/* Light theme: onboarding */
+[data-theme="light"] .onboard-input {
+  background: #FFFFFF;
+  border-color: #D8D6D0;
+  color: #2C2C2C;
+}
+[data-theme="light"] .onboard-input:focus {
+  border-color: var(--accent);
+}
+[data-theme="light"] .provider-card {
+  border-color: #D8D6D0;
+}
+[data-theme="light"] .provider-card:hover {
+  border-color: var(--accent);
+}
+[data-theme="light"] .provider-card.selected {
+  border-color: var(--accent);
+  background: rgba(196, 75, 47, 0.04);
+}
+[data-theme="light"] .model-radio.checked {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: inset 0 0 0 3px #FFFFFF;
+}
+/* Light theme: image lightbox */
+[data-theme="light"] #image-lightbox img {
+  border-color: #D8D6D0;
+}
+/* Light theme: paste preview */
+[data-theme="light"] .paste-preview-remove {
+  background: var(--red);
+}
+/* Light theme: msg copy btn */
+[data-theme="light"] .msg-copy-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #D8D6D0;
+  color: #8A8880;
+}
+[data-theme="light"] .msg-copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}

@@ -1,0 +1,85 @@
+# Delphi compiled units
+*.dcu
+*.dcuil
+*.dcp
+*.bpl
+*.cbk
+
+# Delphi executables & binaries
+*.exe
+*.dll
+*.bpl
+*.drc
+*.map
+*.tvsconfig
+*.dsk
+*.identcache
+*.projdata
+*.stat
+
+# Delphi __history
+__history/
+
+# Backup files
+*.bak
+*.orig
+*~
+
+# Compiled resources
+*.res
+*.ico
+
+# Debug files
+*.tds
+*.dbg
+
+# Output directory
+Output/
+
+# WebView2 user data
+PiMono.exe.WebView2/
+
+# IDE settings
+.claude/
+
+# Environment & secrets
+.env
+*.key
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+debug/
+release/
+
+# Packages
+node_modules/
+
+# Misc
+todo.md
+tui-debug.log
+compaction-results/
+syntax.jsonl
+out.jsonl
+pi-*.html
+out.html
+
+# Code review graph
+.code-review-graph/
+
+# Compressed archives
+*.rar
+*.zip
+*.7z

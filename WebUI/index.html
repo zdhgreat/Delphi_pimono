@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyberpunk-neon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="theme-fonts-link" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
+        media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/styles.css?v=20260509b">
+  <link rel="stylesheet" href="css/themes.css?v=20260509b">
+  <title>PiMono Agent</title>
+  <!-- CRITICAL LAYOUT: Inline styles to guarantee correct bubble width.
+       These cannot be cached separately and override any stale external CSS.
+       Uses CSS Grid instead of Flex for bulletproof 1fr column sizing. -->
+  <style>
+    .message-row { display: grid !important; grid-template-columns: 28px 1fr !important; gap: 12px !important; }
+    .message-row.user { grid-template-columns: 1fr 28px !important; }
+    .message-row:not(.user) .bubble { min-width: 0 !important; overflow: hidden !important; }
+    .bubble-content { width: 100% !important; min-width: 0 !important; }
+    /* Block children must not constrain bubble width */
+    .bubble > p, .bubble > div, .bubble > pre,
+    .bubble-content > p, .bubble-content > div, .bubble-content > pre { min-width: 0 !important; }
+  </style>
+</head>
+<body>
+  <!-- Loading screen — visible instantly, hidden after page_ready -->
+  <div id="loading-screen">
+    <div class="loader-logo">P</div>
+    <div class="loader-bar"><div class="loader-progress"></div></div>
+  </div>
+  <div id="scanlines"></div>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="expanded">
+      <button id="btn-new-chat" class="sidebar-btn-primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>New Chat</span>
+      </button>
+      <div id="session-list"></div>
+      <div id="sidebar-empty" class="hidden">No conversations yet</div>
+      <div id="skill-panel">
+        <div class="skill-label">Attached Skills</div>
+        <div id="skill-tags"></div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div id="main">
+      <!-- Toolbar -->
+      <header id="toolbar">
+        <button id="btn-toggle-sidebar" class="toolbar-btn" title="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div id="toolbar-title">PIO-MONO<span class="toolbar-blink">//</span></div>
+        <div id="toolbar-right">
+          <select id="cmb-model"></select>
+          <button id="btn-menu" class="toolbar-btn" title="Menu">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="4" r="1.5" fill="currentColor"/><circle cx="9" cy="9" r="1.5" fill="currentColor"/><circle cx="9" cy="14" r="1.5" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Chat area -->
+      <div id="chat-area">
+        <!-- Welcome screen -->
+        <div id="welcome">
+          <div id="welcome-logo">P</div>
+          <h1 id="welcome-title">PIO-MONO<span class="blink-cursor">//</span></h1>
+          <p id="welcome-subtitle">AI Coding Terminal v2.0<span class="blink-cursor-bar">_</span></p>
+          <div id="suggestion-grid"></div>
+        </div>
+
+        <!-- Messages container -->
+        <div id="messages"></div>
+
+        <!-- Typing indicator -->
+        <div id="typing-indicator" class="hidden">
+          <div class="typing-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <div id="input-area">
+        <div id="input-card">
+          <textarea id="input" placeholder="Type a message... (Enter to send, Shift+Enter for new line)" rows="1"></textarea>
+          <div id="image-attachments"></div>
+          <div id="input-actions">
+            <button id="btn-stop" class="hidden" title="Stop">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="2"/></svg>
+            </button>
+            <button id="btn-send" title="Send">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l12-6-5 6 5 6z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status bar -->
+      <footer id="status-bar">
+        <span id="status-indicator" class="status-dot"></span>
+        <span id="status-text">SYS:ONLINE</span>
+        <span id="status-right"></span>
+      </footer>
+    </div>
+
+    <!-- Context menu overlay -->
+    <div id="context-menu-overlay" class="hidden"></div>
+    <div id="context-menu" class="hidden">
+      <button data-action="rename">Rename</button>
+      <button data-action="delete">Delete</button>
+    </div>
+
+    <!-- Settings overlay -->
+    <div id="settings-overlay" class="hidden">
+      <div id="settings-panel">
+        <div id="settings-header">
+          <h2>Settings</h2>
+          <button id="settings-close" class="toolbar-btn">&times;</button>
+        </div>
+        <div id="settings-tabs">
+          <button class="settings-tab active" data-tab="profiles">Profiles</button>
+          <button class="settings-tab" data-tab="ui">UI</button>
+          <button class="settings-tab" data-tab="paths">Paths</button>
+          <button class="settings-tab" data-tab="search">Search</button>
+          <button class="settings-tab" data-tab="skills">Skills</button>
+        </div>
+        <div id="settings-content">
+          <!-- Tab panels rendered dynamically by settings.js -->
+        </div>
+        <div id="settings-footer">
+          <button id="btn-settings-save" class="btn-primary">Save</button>
+          <button id="btn-settings-cancel" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Onboarding overlay -->
+    <div id="onboarding-overlay" class="hidden">
+      <div id="onboarding-panel">
+        <div id="onboarding-content">
+          <!-- Steps rendered dynamically by onboarding.js -->
+        </div>
+        <div id="onboarding-footer">
+          <button id="btn-onboard-back" class="btn-secondary">Back</button>
+          <button id="btn-onboard-skip" class="btn-link">Skip, I'll configure later</button>
+          <button id="btn-onboard-next" class="btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/marked.min.js?v=20260509b"></script>
+  <script src="lib/highlight.min.js?v=20260509b"></script>
+  <script src="js/bridge.js?v=20260509b"></script>
+  <script src="js/chat.js?v=20260509b"></script>
+  <script src="js/sidebar.js?v=20260509b"></script>
+  <script src="js/theme.js?v=20260509b"></script>
+  <script src="js/settings.js?v=20260509b"></script>
+  <script src="js/onboarding.js?v=20260509b"></script>
+  <script src="js/app.js?v=20260509b"></script>
+</body>
+</html>
